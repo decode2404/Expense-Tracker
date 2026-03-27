@@ -1,73 +1,96 @@
-# Expense-Tracker
-# 💰 Expense Tracker Application
+💰 **Expense Tracker – Full Stack Web Application**
 
-## 📌 Project Overview
-The **Expense Tracker Application** is a web-based financial management tool designed to help users efficiently track their income and expenses. It performs real-time financial calculations, categorizes transactions, and stores data locally in the browser, simulating real-world business logic without requiring a backend.
+A modern, feature-rich Expense Tracker built using **Spring Boot (Backend)** and **Vanilla JavaScript (Frontend)**. This application helps users manage their daily expenses efficiently with a clean UI, real-time analytics, and secure authentication using JWT.
 
 ---
 
-## 🎯 Key Features
-- Add income and expense transactions  
-- Record transaction details including:
-  - Amount  
-  - Category  
-  - Date  
-  - Description  
-- Automatic calculation of:
-  - Total income  
-  - Total expenses  
-  - Current balance  
-- Category-wise transaction display  
-- Monthly expense summary  
-- Delete individual transactions  
-- Persistent data storage using **LocalStorage**  
-- Responsive and professional UI design  
+🚀 **Key Features**
+
+* 🔐 **User Authentication (JWT Based)**
+
+  * Secure Login & Signup system
+  * Token-based authorization for protected APIs
+
+* 💸 **Expense Management**
+
+  * Add, Edit, Delete expenses
+  * Categorize transactions (Food, Transport, Shopping, etc.)
+  * Date-wise tracking
+
+* 📊 **Smart Dashboard**
+
+  * Total, Monthly, Weekly expense tracking
+  * Real-time statistics (highest, lowest, average)
+  * Trend analysis & spending insights
+
+* 📈 **Data Visualization**
+
+  * Pie Chart (Category-wise)
+  * Line Chart (Daily trend)
+  * Bar Chart (Monthly analysis)
+
+* 🤖 **AI-Based Insights**
+
+  * Detect spending patterns
+  * Category-based expense analysis
+  * Smart suggestions
+
+* 📅 **Prediction System**
+
+  * Monthly expense prediction based on current usage
+
+* 🎯 **Budget Management**
+
+  * Set monthly budget
+  * Alerts when nearing/exceeding limits
+
+* 🔍 **Advanced Filtering**
+
+  * Search by title
+  * Filter by category
+  * Sort by amount/date
+
+* 📁 **Data Handling**
+
+  * Export expenses as CSV
+  * Backup & Restore JSON data
+
+* 🎨 **Modern UI/UX**
+
+  * Responsive design
+  * Dark/Light mode
+  * Smooth animations and clean layout
 
 ---
 
-## 🧠 How It Works
-- Users enter transaction details using a form  
-- Each transaction is stored as an **object inside an array**  
-- JavaScript dynamically updates:
-  - The transaction list  
-  - Balance calculations (income, expense, balance)  
-- All data is saved using **LocalStorage**, ensuring persistence across page reloads  
-- Deleting a transaction instantly updates the UI and calculations  
+🛠 **Tech Stack**
+
+* **Frontend:** HTML, CSS, JavaScript
+* **Backend:** Spring Boot (Java)
+* **Database:** MySQL
+* **Security:** Spring Security + JWT
+* **Charts:** Chart.js
 
 ---
 
-## 🛠️ Technologies Used
-- **HTML5** – Form structure and layout  
-- **CSS3** – Styling, layout, and responsive design  
-- **JavaScript (ES6+)** – Business logic, calculations, and UI updates  
-- **LocalStorage** – Client-side data persistence  
+⚙️ **How to Run**
+
+1. Clone the repository
+2. Start MySQL and create the database
+3. Run Spring Boot backend (`localhost:8081`)
+4. Open `login.html` in browser
+5. Register → Login → Start tracking expenses
 
 ---
 
-## 🚀 JavaScript Concepts Demonstrated
-- Arrays and objects  
-- Array methods:
-  - `map()`
-  - `filter()`
-  - `reduce()`
-- DOM manipulation  
-- Event listeners  
-- Form validation  
-- LocalStorage CRUD operations  
-- Dynamic UI rendering  
+🔥 **Future Improvements**
+
+* Multi-user data isolation (user-based expenses)
+* Cloud deployment (AWS / Render)
+* Mobile app version
+* Advanced AI analytics
 
 ---
 
-## ✅ Why This Project Stands Out
-The Expense Tracker simulates real-world financial workflows and demonstrates how JavaScript can be used to manage application state, perform calculations, and persist user data entirely on the client side without a backend.
+⭐ If you like this project, give it a star!
 
----
-
-## 📂 Project Structure
-```txt
-expense-tracker/
-│── index.html
-│── style.css
-│── script.js
-
-User authentication with backend integration
