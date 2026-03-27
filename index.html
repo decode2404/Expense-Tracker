@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <button id="themeToggle">🌙 Dark Mode</button>
+    <h1>Expense Tracker</h1>
+
+    <!-- FORM -->
+    <section>
+      <form id="expenseForm">
+        <label>Title</label><br />
+        <input type="text" id="title" required /><br /><br />
+
+        <label>Amount</label><br />
+        <input type="number" id="amount" required /><br /><br />
+
+        <label>Category</label><br />
+        <select id="category">
+          <option>Food</option>
+          <option>Transport</option>
+          <option>Shopping</option>
+          <option>Entertainment</option>
+          <option>Others</option></select
+        ><br /><br />
+
+        <label>Date</label><br />
+        <input type="date" id="date" /><br /><br />
+
+        <button type="submit">Add Expense</button>
+      </form>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section class="dashboard">
+      <div class="card">
+        <h3>Total Expense</h3>
+        <p id="totalExpense">₹0</p>
+      </div>
+
+      <div class="card">
+        <h3>This Month</h3>
+        <p id="monthlyExpense">₹0</p>
+      </div>
+
+      <div class="card">
+        <h3>Total Transactions</h3>
+        <p id="transactionCount">0</p>
+      </div>
+
+      <div class="card">
+        <h3>Weekly Expense</h3>
+        <p id="weeklyExpense">₹0</p>
+      </div>
+
+      <div class="card">
+        <h3>Trend</h3>
+        <p id="trend">-</p>
+      </div>
+    </section>
+
+    <!-- BUDGET -->
+    <section>
+      <h2>Monthly Budget</h2>
+      <input
+        type="number"
+        id="budgetInput"
+        placeholder="Enter monthly budget"
+      />
+      <button id="setBudget">Set Budget</button>
+      <p id="budgetStatus">Budget not set</p>
+    </section>
+
+    <!-- STATISTICS -->
+    <section>
+      <h2>Expense Statistics</h2>
+      <p id="highestExpense">Highest Expense: ₹0</p>
+      <p id="lowestExpense">Lowest Expense: ₹0</p>
+      <p id="averageExpense">Average Expense: ₹0</p>
+      <p id="totalTransactions">Total Transactions: 0</p>
+    </section>
+
+    <!-- TABLE -->
+    <section>
+      <h2>Expense List</h2>
+
+      <input type="text" id="searchExpense" placeholder="Search expenses..." />
+
+      <select id="filterCategory">
+        <option value="All">All Categories</option>
+        <option value="Food">Food</option>
+        <option value="Transport">Transport</option>
+        <option value="Shopping">Shopping</option>
+        <option value="Entertainment">Entertainment</option>
+        <option value="Others">Others</option>
+      </select>
+
+      <select id="sortExpenses">
+        <option value="none">Default</option>
+        <option value="amountHigh">Amount (High → Low)</option>
+        <option value="amountLow">Amount (Low → High)</option>
+        <option value="dateNew">Date (Newest)</option>
+        <option value="dateOld">Date (Oldest)</option>
+      </select>
+
+      <button id="exportCSV">Download Expense Report</button>
+
+      <div class="table-container">
+        <table border="1">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Amount</th>
+              <th>Category</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="expenseTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- EMPTY ANALYSIS SECTION (NO CHARTS HERE NOW) -->
+    <section>
+      <h2>Expense Analyst</h2>
+    </section>
+
+    <!-- AI -->
+    <section>
+      <h2>AI Spending Insight</h2>
+      <div id="aiInsight">
+        <p>AI will analyze your spending...</p>
+      </div>
+    </section>
+
+    <!-- PREDICTION -->
+    <section>
+      <h2>Spending Prediction</h2>
+      <p id="predictionText">Prediction will appear here</p>
+    </section>
+
+    <!-- BACKUP -->
+    <section>
+      <h2>Data Backup</h2>
+      <button id="backupBtn">Download Backup</button>
+      <input type="file" id="restoreFile" accept=".json" />
+      <button id="restoreBtn">Restore Data</button>
+    </section>
+
+    <!-- ✅ ALL CHARTS AT BOTTOM (FIXED) -->
+    <section class="charts-bottom">
+      <h2>Expense Charts</h2>
+
+      <div class="chart-card">
+        <h3>Category Chart</h3>
+        <canvas id="expenseChart"></canvas>
+      </div>
+
+      <div class="chart-card">
+        <h3>Monthly Spending</h3>
+        <canvas id="monthlyChart"></canvas>
+      </div>
+
+      <div class="chart-card">
+        <h3>Trend Chart</h3>
+        <canvas id="trendChart"></canvas>
+      </div>
+    </section>
+   <button onclick="logout()">Logout</button>
+    <footer>
+      <p>Expense Tracker App</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+
+    <div id="toastContainer"></div>
+    <script>
+const token = localStorage.getItem("token");
+
+if (!token) {
+    window.location.href = "login.html"; // redirect back
+}
+</script>
+  </body>
+</html>
