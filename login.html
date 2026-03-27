@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Auth</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+/* ⚡ Lightweight gradient (no heavy animation) */
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+}
+
+/* 💎 Card (NO backdrop-filter → no lag) */
+.container {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 40px;
+  border-radius: 20px;
+  width: 360px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  text-align: center;
+}
+
+/* Toggle */
+.toggle {
+  display: flex;
+  margin-bottom: 25px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.toggle button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  background: transparent;
+  color: #aaa;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.toggle button.active {
+  background: white;
+  color: black;
+  font-weight: 600;
+}
+
+/* Heading */
+h2 {
+  color: white;
+  margin-bottom: 25px;
+}
+
+/* Inputs */
+.input-box {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.1);
+  outline: none;
+  background: rgba(255,255,255,0.05);
+  color: white;
+  transition: 0.2s;
+}
+
+.input-box input:focus {
+  border-color: #38bdf8;
+  background: rgba(255,255,255,0.08);
+}
+
+.input-box label {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  color: #777;
+  transform: translateY(-50%);
+  transition: 0.3s;
+}
+
+.input-box input:focus + label,
+.input-box input:valid + label {
+  top: -8px;
+  font-size: 12px;
+  color: #38bdf8;
+}
+
+/* Button */
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: none;
+  background: #38bdf8;
+  color: black;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  background: #0ea5e9;
+}
+
+/* Forms */
+.form {
+  display: none;
+}
+
+.form.active {
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="toggle">
+    <button id="loginTab" class="active" onclick="showLogin()">Login</button>
+    <button id="signupTab" onclick="showSignup()">Sign Up</button>
+  </div>
+
+  <!-- LOGIN -->
+  <div id="loginForm" class="form active">
+    <h2>Welcome Back 👋</h2>
+
+    <div class="input-box">
+      <input type="text" id="loginUsername" required />
+      <label>Username</label>
+    </div>
+
+    <div class="input-box">
+      <input type="password" id="loginPassword" required />
+      <label>Password</label>
+    </div>
+
+    <button class="submit-btn" onclick="login()">Login</button>
+  </div>
+
+  <!-- SIGNUP -->
+  <div id="signupForm" class="form">
+    <h2>Create Account ✨</h2>
+
+    <div class="input-box">
+      <input type="text" id="signupUsername" required />
+      <label>Username</label>
+    </div>
+
+    <div class="input-box">
+      <input type="password" id="signupPassword" required />
+      <label>Password</label>
+    </div>
+
+    <button class="submit-btn" onclick="register()">Sign Up</button>
+  </div>
+
+</div>
+
+<script>
+// Toggle
+function showLogin() {
+  loginForm.classList.add("active");
+  signupForm.classList.remove("active");
+  loginTab.classList.add("active");
+  signupTab.classList.remove("active");
+}
+
+function showSignup() {
+  signupForm.classList.add("active");
+  loginForm.classList.remove("active");
+  signupTab.classList.add("active");
+  loginTab.classList.remove("active");
+}
+
+// LOGIN
+function login() {
+  const username = loginUsername.value;
+  const password = loginPassword.value;
+
+  fetch("http://localhost:8081/api/auth/login", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({ username, password })
+  })
+  .then(res => {
+    if (!res.ok) throw new Error();
+    return res.text();
+  })
+  .then(token => {
+    localStorage.setItem("token", token);
+    window.location.href = "index.html";
+  })
+  .catch(() => alert("Login failed"));
+}
+
+// SIGNUP
+function register() {
+  const username = signupUsername.value;
+  const password = signupPassword.value;
+
+  fetch("http://localhost:8081/api/auth/register", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({ username, password })
+  })
+  .then(res => res.text())
+  .then(() => {
+    alert("Registered!");
+    showLogin();
+  })
+  .catch(() => alert("Signup failed"));
+}
+</script>
+
+</body>
+</html>

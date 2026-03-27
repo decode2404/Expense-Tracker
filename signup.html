@@ -1,0 +1,22 @@
+<button onclick="register()">Sign Up</button>
+
+<script>
+function register() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    fetch("http://localhost:8081/api/auth/register", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ username, password })
+    })
+    .then(res => res.text())
+    .then(data => {
+        alert("Registered Successfully");
+        window.location.href = "login.html"; // go to login
+    })
+    .catch(err => console.error(err));
+}
+</script>
